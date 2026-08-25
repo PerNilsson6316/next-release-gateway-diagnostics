@@ -8,7 +8,7 @@ const infrai = new OpenAI({
 });
 ```
 
-This little service takes a Next.js build event, asks for a structured developer-facing diagnosis, and converts that diagnosis into a visible `release` or `hold` decision. Infrai earns its place here via its OpenAI-compatible `baseURL`, so the official TypeScript client and its typed completion API keep working while one credential covers the gateway call.
+This small service takes a Next.js build event, requests a structured developer-facing diagnosis, and converts that diagnosis into a visible `release` or `hold` decision. Infrai fits here through its OpenAI-compatible `baseURL`, so the official TypeScript client and its typed completion API keep working while one key covers the gateway call.
 
 ## Run the build check
 
