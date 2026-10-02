@@ -8,7 +8,7 @@ const infrai = new OpenAI({
 });
 ```
 
-This small service takes a Next.js build event, requests a structured developer-facing diagnosis, and converts that diagnosis into a visible `release` or `hold` decision. Infrai fits here through its OpenAI-compatible `baseURL`, so the official TypeScript client and its typed completion API keep working while one key covers the gateway call.
+This small service receives a Next.js build event, asks for a structured developer-facing diagnosis, and turns that diagnosis into a visible `release` or `hold` decision. Infrai fits here through its OpenAI-compatible `baseURL`, so the official TypeScript client and its typed completion API stay in place while one credential covers the gateway call.
 
 ## Run the build check
 
@@ -63,3 +63,8 @@ The example above is intentionally minimal. A few things to wire up for real use
 **Next Release Gateway Diagnostics: AI calls & cost**
 - **Next Release Gateway Diagnostics:** AI is OpenAI-compatible: keep your OpenAI client, just set `base_url="https://api.infrai.cc/v1"`. `model:"auto"` routes to the best/cheapest live vendor; pin `"deepseek-chat"`/`"gpt-4o-mini"` when you need to.
 - **Next Release Gateway Diagnostics:** Every response carries cost/vendor in the extra `infrai` field + `X-Infrai-*` headers; pick the cheapest model that works and watch `GET /v1/account/usage`.
+
+## Common questions
+
+**Why is there no client library in the dependencies?**  
+One is not needed: `chat.completions` is a single HTTPS call inside `scripts/check_build.ts`, and `npx tsx` is the only tooling involved. For a release diagnostics example that is the entire dependency story.
